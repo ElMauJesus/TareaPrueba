@@ -3,7 +3,9 @@ import express, { Request, Response} from 'express';
 //Importando funcion para conectar con la base de datos
 import { connectDB } from './config/db';
 
+//Importanto rutas
 import projectRoutes from './routes/projectRoutes';
+import authRoutes from './routes/authRoutes';
 
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -18,6 +20,8 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/api/projects', projectRoutes);
+
+app.use('/api/auth', authRoutes);
 
 //Conectando con la base de datos
 connectDB();
