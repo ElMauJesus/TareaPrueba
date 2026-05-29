@@ -1,0 +1,70 @@
+/* 🖥️ El contenedor único: centra todo en la pantalla y da un fondo limpio */
+.contenedorPrincipal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f4f6f9; /* Gris suave estético */
+  font-family: sans-serif;
+  padding: 20px;
+}
+
+/* 🏷️ El título principal (Crear Cuenta o Iniciar Sesión) */
+.titulo {
+  margin-bottom: 20px;
+  color: #333333;
+  font-size: 28px;
+}
+
+/* 📋 El formulario: le da forma de tarjeta blanca centrada */
+.formulario {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Sombra sutil */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 360px; /* Tamaño ideal para que no se desarme */
+}
+
+/* ✏️ Las cajas de texto (Inputs) */
+.cajaTexto {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px; /* Separa un input del siguiente */
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box; /* Evita que se deformen */
+}
+
+.cajaTexto::placeholder {
+    color: #777;
+}
+
+/* 🚀 El botón de acción */
+.boton {
+  width: 100%;
+  padding: 12px;
+  background-color: #0070f3; /* Azul estético */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.boton:hover {
+  background-color: #0051bb; /* Oscurece un poco al pasar el mouse */
+}
+
+/* 🔴 El texto de error */
+.mensajeError {
+  color: #e53e3e;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
