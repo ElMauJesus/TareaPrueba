@@ -4,13 +4,12 @@
 import { useState } from 'react';
 
 import styles from '../auth.module.css';
+import { registrarUsuario } from '../services/api';
 
 export default function RegisterPage() {
-  //Estados del formulario para guardar la informacion
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   const [error, setError] = useState('');
 
   //Funcion al momento de enviar el formulario
@@ -18,29 +17,22 @@ export default function RegisterPage() {
     e.preventDefault();
     setError('');
 
-    //colocamos la dereccion para mandar el registro a la bd
-    const url = 'http://localhost:5000/api/auth/register';
-
     try {
-      //Llamamos a la funcoin fetch
-      const response = await fetch(url, {
-        method: 'POST', //Metodo para enviar datos
-        headers: {'Content-Type': 'application/json'}, //le decimos que los datos que vamos a enviar son formato json
-        body: JSON.stringify({ name, email, password }), //convertimos variables a texto plano con JSON.stringify
-      });
+      const { ok, data } = await registrarUsuario({ name, email, password });
 
-      const data = await response.json(); //Convirtiendo respuesta del servidor a texto JSON
-
-      if(!response.ok) {
-        setError(data.message || 'Error al registrar el usuario');
+      if(!ok) {
+        setError(data.msg || 'Error al registrar el usuario');
         return;
       }
 
       console.log('Respuesta del servidor: ', data); //Imprimiendo respuesta
+      alert('¡Usuario creado correctamente!');
+      setName('');
+      setEmail('');
+      setPassword('');
     } catch (error) {
       setError('Error al conectar con el servidor');
     }
-    console.log({ name, email, password });
   };
 
   return (

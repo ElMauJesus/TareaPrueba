@@ -1,0 +1,80 @@
+/* 🧱 CONTENEDOR PORTAL COMPLETO */
+.contenedorPortal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f4f6f9; /* Fondo claro consistente */
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+/* 💳 TARJETA CENTRAL */
+.tarjetaBienvenida {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  padding: 40px 30px;
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* 🏷️ TEXTOS */
+.tituloPrincipal {
+  font-size: 26px;
+  color: #1e293b;
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.descripcion {
+  font-size: 15px;
+  color: #64748b;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+/* 🎛️ CONTENEDOR DE ENLACES */
+.bloqueAcciones {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* 🚀 ENLACES ESTILIZADOS COMO BOTONES */
+.botonLogin, .botonRegistro {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none; /* Elimina la línea de los enlaces estándar */
+  border-radius: 8px;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Botón Iniciar Sesión (Azul) */
+.botonLogin {
+  background-color: #0070f3;
+  color: #ffffff;
+}
+
+.botonLogin:hover {
+  background-color: #0056b3;
+}
+
+/* Botón Crear Cuenta (Gris Claro / Bordeado) */
+.botonRegistro {
+  background-color: #f8fafc;
+  color: #0070f3;
+  border: 2px solid #0070f3;
+}
+
+.botonRegistro:hover {
+  background-color: #e2e8f0;
+}

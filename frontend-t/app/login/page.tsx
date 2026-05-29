@@ -2,14 +2,15 @@
 
 //herramienta para actualizar estado
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 import styles from '../auth.module.css';
+import { iniciarSesion } from '../services/api';
 
 export default function RegisterPage() {
-  //Estados del formulario para guardar la informacion
+  const router = useRouter(); //Iniciamos enrutador
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
-
   const [error, setError] = useState('');
 
   //Funcion al momento de enviar el formulario
@@ -17,21 +18,11 @@ export default function RegisterPage() {
     e.preventDefault();
     setError('');
 
-    //colocamos la dereccion para mandar el registro a la bd
-    const url = 'http://localhost:5000/api/auth/login';
-
     try {
-      //Llamamos a la funcoin fetch
-      const response = await fetch(url, {
-        method: 'POST', //Metodo para enviar datos
-        headers: {'Content-Type': 'application/json'}, //le decimos que los datos que vamos a enviar son formato json
-        body: JSON.stringify({ name, password }), //convertimos variables a texto plano con JSON.stringify
-      });
+      const { ok, data } = await iniciarSesion({ name, password }); //Llamamos a la funcion
 
-      const data = await response.json(); //Convirtiendo respuesta del servidor a texto JSON
-
-      if(!response.ok) {
-        setError(data.message || 'Error al iniciar sesion');
+      if(!ok) {
+        setError(data.msg || 'Error al iniciar sesion');
         return;
       }
 
@@ -39,12 +30,14 @@ export default function RegisterPage() {
 
       if (data.token) {
         localStorage.setItem('token', data.token);
-        console.log('¡Token guardado exitosamente en el navegador!');
+        localStorage.setItem('user', JSON.stringify(data.user));
+        console.log('¡Token Y datos de usuario guardados correctamente en el navegador!');
+
+        router.push('/proyectos'); //redirigimos a la pagina de proyectos
       }
     } catch (error) {
       setError('Error al conectar con el servidor');
     }
-    console.log({ name, password });
   };
 
   return (
